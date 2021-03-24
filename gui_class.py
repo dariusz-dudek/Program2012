@@ -56,7 +56,8 @@ class Main_menu(ttk.Frame):
                                         command=lambda: controller.show_frame(Add_employee))
         button_add_employee.pack(pady=10, padx=10)
 
-        button_export_data = tk.Button(self, text='Export data', font=getenv('MEDIUM_FONT'), command=lambda: controller.show_frame(Export_data))
+        button_export_data = tk.Button(self, text='Export data', font=getenv('MEDIUM_FONT'),
+                                       command=lambda: controller.show_frame(Export_data))
         button_export_data.pack(pady=10, padx=10)
 
         button_delete_employee = tk.Button(self, text='Delete employee', font=getenv('MEDIUM_FONT'),
@@ -83,7 +84,8 @@ class Lst_page(ttk.Frame):
         label = ttk.Label(self, text='Show all employees', font=getenv('LARGE_FONT'))
         label.grid(pady=10, padx=10)
 
-        button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'), command=lambda: controller.show_frame(Main_menu))
+        button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'),
+                           command=lambda: controller.show_frame(Main_menu))
         button.grid()
 
 
@@ -92,7 +94,10 @@ class Add_employee(ttk.Frame):
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
         title_label = ttk.Label(self, text='Add a new employee', font=getenv('LARGE_FONT'))
-        title_label.grid(pady=getenv('PADY_LABEL_TITLE'), padx=getenv('PADX_LABEL_TITLE'), row=0, column=0, columnspan=2)
+        title_label.grid(pady=getenv('PADY_LABEL_TITLE'), padx=getenv('PADX_LABEL_TITLE'), row=0, column=0,
+                         columnspan=3)
+
+        # Adding labels
         labels = {
             'first_name': 'First name',
             'last_name': 'Last name',
@@ -106,14 +111,50 @@ class Add_employee(ttk.Frame):
         for count, key in enumerate(labels):
             exec(f"{key}_label = ttk.Label(self, text='{labels[key]}', font=getenv('MEDIUM_FONT'))")
             exec(f"{key}_label.grid(pady=getenv('PADY_LABEL'), padx=getenv('PADX_LABEL'), row={count + 1}, column=0)")
-        
-        # first_name_label = ttk.Label(self, text='First name', font=getenv('MEDIUM_FONT'))
-        # first_name_label.grid(row=1, column=0, padx=getenv('PADX_LABEL'), pady=getenv('PADY_LABEL'), sticky='w')
-        # last_name_label = ttk.Label(self, text='Last name', font=getenv('MEDIUM_FONT'))
-        # last_name_label.grid(row=2, column=0, padx=getenv('PADX_LABEL'), pady=getenv('PADY_LABEL'), sticky='w')
 
-        button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'), command=lambda: controller.show_frame(Main_menu))
-        button.grid()
+        # Create text boxes
+        first_name = ttk.Entry(self, width=getenv('TEXT_BOX-WIDTH'), font=getenv('MEDIUM_FONT'))
+        first_name.grid(row=1, column=1, columnspan=3)
+
+        last_name = ttk.Entry(self, width=getenv('TEXT_BOX-WIDTH'), font=getenv('MEDIUM_FONT'))
+        last_name.grid(row=2, column=1, columnspan=2)
+
+        sex = tk.StringVar(self)
+        sex.set('W')
+
+        ttk.Radiobutton(self, text='Woman', variable=sex, value='W', command=lambda: sex.set('W')).grid(row=3,
+                                                                                                        column=1)
+        ttk.Radiobutton(self, text='Man', variable=sex, value='M', command=lambda: sex.set('M')).grid(row=3,
+                                                                                                      column=2)
+
+        department_number = tk.IntVar(self)
+        department_number.set(1)
+
+        ttk.OptionMenu(self, department_number, *range(1, 11)).grid(row=4, column=1, columnspan=2)
+
+        salary = ttk.Entry(self, width=getenv('TEXT_BOX-WIDTH'), font=getenv('MEDIUM_FONT'))
+        salary.grid(row=5, column=1, columnspan=2)
+
+        age = tk.IntVar(self)
+        age.set(18)
+        ttk.OptionMenu(self, age, *range(18, 66)).grid(row=6, column=1, columnspan=2)
+
+        children = tk.IntVar(self)
+        children.set(0)
+        ttk.OptionMenu(self, children, *range(0, 21)).grid(row=7, column=1, columnspan=2)
+
+        marital_status = tk.StringVar(self)
+        marital_status.set('Y')
+
+        ttk.Radiobutton(self, text='Married', variable=marital_status, value='Y',
+                        command=lambda: marital_status.set('Y')).grid(row=8, column=1)
+        ttk.Radiobutton(self, text='No married', variable=marital_status, value='N',
+                        command=lambda: marital_status.set('N')).grid(row=8, column=2)
+
+        # Adding button
+        button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'),
+                           command=lambda: controller.show_frame(Main_menu))
+        button.grid(row=9, column=0, columnspan=3)
 
 
 class Export_data(ttk.Frame):
@@ -123,7 +164,8 @@ class Export_data(ttk.Frame):
         label = ttk.Label(self, text='Export data', font=getenv('LARGE_FONT'))
         label.grid(pady=10, padx=10)
 
-        button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'), command=lambda: controller.show_frame(Main_menu))
+        button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'),
+                           command=lambda: controller.show_frame(Main_menu))
         button.grid()
 
 
@@ -134,7 +176,8 @@ class Delete_employee(ttk.Frame):
         label = ttk.Label(self, text='Delete employee', font=getenv('LARGE_FONT'))
         label.grid(pady=10, padx=10)
 
-        button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'), command=lambda: controller.show_frame(Main_menu))
+        button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'),
+                           command=lambda: controller.show_frame(Main_menu))
         button.grid()
 
 
@@ -145,7 +188,8 @@ class Edit_employee(ttk.Frame):
         label = ttk.Label(self, text='Edit employee', font=getenv('LARGE_FONT'))
         label.grid(pady=10, padx=10)
 
-        button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'), command=lambda: controller.show_frame(Main_menu))
+        button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'),
+                           command=lambda: controller.show_frame(Main_menu))
         button.grid()
 
 
@@ -156,7 +200,8 @@ class Additional_function(ttk.Frame):
         label = tk.Label(self, text='Additional function', font=getenv('LARGE_FONT'))
         label.grid(pady=10, padx=10)
 
-        button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'), command=lambda: controller.show_frame(Main_menu))
+        button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'),
+                           command=lambda: controller.show_frame(Main_menu))
         button.grid()
 
 
