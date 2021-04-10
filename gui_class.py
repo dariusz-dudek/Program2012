@@ -16,7 +16,8 @@ class Gui_class(tk.Tk):
         screen_height = self.winfo_screenheight()
         x = (screen_width / 2) - (int(getenv('WINDOW_WIDTH')) / 2)
         y = (screen_height / 2) - (int(getenv('WINDOW_HEIGHT')) / 2)
-        self.geometry(f"{int(getenv('WINDOW_WIDTH'))}x{int(getenv('WINDOW_HEIGHT'))}+{int(x)}+{int(y)}")
+        self.geometry(
+            f"{int(getenv('WINDOW_WIDTH'))}x{int(getenv('WINDOW_HEIGHT'))}+{int(x)}+{int(y)}")
 
         container = ttk.Frame(self, width=400, height=400)
 
@@ -81,7 +82,8 @@ class Lst_page(ttk.Frame):
 
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
-        label = ttk.Label(self, text='Show all employees', font=getenv('LARGE_FONT'))
+        label = ttk.Label(self, text='Show all employees',
+                          font=getenv('LARGE_FONT'))
         label.grid(pady=10, padx=10)
 
         button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'),
@@ -93,7 +95,8 @@ class Add_employee(ttk.Frame):
 
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
-        title_label = ttk.Label(self, text='Add a new employee', font=getenv('LARGE_FONT'))
+        title_label = ttk.Label(
+            self, text='Add a new employee', font=getenv('LARGE_FONT'))
         title_label.grid(pady=getenv('PADY_LABEL_TITLE'), padx=getenv('PADX_LABEL_TITLE'), row=0, column=0,
                          columnspan=3)
 
@@ -109,14 +112,17 @@ class Add_employee(ttk.Frame):
             'marital_status': 'Marital status'
         }
         for count, key in enumerate(labels):
-            exec(f"{key}_label = ttk.Label(self, text='{labels[key]}', font=getenv('MEDIUM_FONT'))")
+            exec(
+                f"{key}_label = ttk.Label(self, text='{labels[key]}', font=getenv('MEDIUM_FONT'))")
             exec(f"{key}_label.grid(pady=getenv('PADY_LABEL'), padx=getenv('PADX_LABEL'), row={count + 1}, column=0)")
 
         # Create text boxes
-        first_name = ttk.Entry(self, width=getenv('TEXT_BOX-WIDTH'), font=getenv('MEDIUM_FONT'))
+        first_name = ttk.Entry(self, width=getenv(
+            'TEXT_BOX-WIDTH'), font=getenv('MEDIUM_FONT'))
         first_name.grid(row=1, column=1, columnspan=3)
 
-        last_name = ttk.Entry(self, width=getenv('TEXT_BOX-WIDTH'), font=getenv('MEDIUM_FONT'))
+        last_name = ttk.Entry(self, width=getenv(
+            'TEXT_BOX-WIDTH'), font=getenv('MEDIUM_FONT'))
         last_name.grid(row=2, column=1, columnspan=2)
 
         sex = tk.StringVar(self)
@@ -130,18 +136,22 @@ class Add_employee(ttk.Frame):
         department_number = tk.IntVar(self)
         department_number.set(1)
 
-        ttk.OptionMenu(self, department_number, *range(1, 11)).grid(row=4, column=1, columnspan=2)
+        ttk.OptionMenu(self, department_number, *range(1, 11)
+                       ).grid(row=4, column=1, columnspan=2)
 
-        salary = ttk.Entry(self, width=getenv('TEXT_BOX-WIDTH'), font=getenv('MEDIUM_FONT'))
+        salary = ttk.Entry(self, width=getenv(
+            'TEXT_BOX-WIDTH'), font=getenv('MEDIUM_FONT'))
         salary.grid(row=5, column=1, columnspan=2)
 
         age = tk.IntVar(self)
         age.set(18)
-        ttk.OptionMenu(self, age, *range(18, 66)).grid(row=6, column=1, columnspan=2)
+        ttk.OptionMenu(self, age, *range(18, 66)
+                       ).grid(row=6, column=1, columnspan=2)
 
         children = tk.IntVar(self)
         children.set(0)
-        ttk.OptionMenu(self, children, *range(0, 21)).grid(row=7, column=1, columnspan=2)
+        ttk.OptionMenu(self, children, *range(0, 21)
+                       ).grid(row=7, column=1, columnspan=2)
 
         marital_status = tk.StringVar(self)
         marital_status.set('Y')
@@ -173,7 +183,8 @@ class Delete_employee(ttk.Frame):
 
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
-        label = ttk.Label(self, text='Delete employee', font=getenv('LARGE_FONT'))
+        label = ttk.Label(self, text='Delete employee',
+                          font=getenv('LARGE_FONT'))
         label.grid(pady=10, padx=10)
 
         button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'),
@@ -185,7 +196,8 @@ class Edit_employee(ttk.Frame):
 
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
-        label = ttk.Label(self, text='Edit employee', font=getenv('LARGE_FONT'))
+        label = ttk.Label(self, text='Edit employee',
+                          font=getenv('LARGE_FONT'))
         label.grid(pady=10, padx=10)
 
         button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'),
@@ -197,7 +209,8 @@ class Additional_function(ttk.Frame):
 
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
-        label = tk.Label(self, text='Additional function', font=getenv('LARGE_FONT'))
+        label = tk.Label(self, text='Additional function',
+                         font=getenv('LARGE_FONT'))
         label.grid(pady=10, padx=10)
 
         button = tk.Button(self, text='Main menu', font=getenv('MEDIUM_FONT'),

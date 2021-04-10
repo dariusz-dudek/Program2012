@@ -14,20 +14,20 @@ def main_menu():
               '[7] - End program\n')
 
         try:
-            choice = int(input('Enter your choice: '))
-            if choice == 1:
+            choice = input('Enter your choice: ')
+            if choice == '1':
                 show_all_employees_stripped()
-            elif choice == 2:
+            elif choice == '2':
                 add_new_employee_to_database(add_new_employee())
-            elif choice == 3:
+            elif choice == '3':
                 export_data()
-            elif choice == 4:
+            elif choice == '4':
                 delete_employee()
-            elif choice == 5:
+            elif choice == '5':
                 employee_data_edit()
-            elif choice == 6:
+            elif choice == '6':
                 additional_functions()
-            elif choice == 7:
+            elif choice == '7':
                 break
             else:
                 print('Wrong choice. Try one more time.')
